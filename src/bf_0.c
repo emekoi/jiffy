@@ -3,8 +3,8 @@
 
 #define UNUSED(x) ((void) x)
 
-#define TAPE_SIZE 30000
-#define MAX_NESTING 100
+#define TAPE_SIZE 1024 * 1024
+#define MAX_NESTING 1024
 
 typedef struct bf_state {
   unsigned char* tape;
@@ -16,9 +16,7 @@ typedef struct bf_state {
 
 static void bf_interpret(const char* program, bf_state_t* state) {
   const char* loops[MAX_NESTING];
-  int nloops = 0;
-  int n;
-  int nskip = 0;
+  int nloops = 0, nskip = 0, n;
   unsigned char* tape_begin = state->tape - 1;
   unsigned char* ptr = state->tape;
   unsigned char* tape_end = state->tape + TAPE_SIZE - 1;
