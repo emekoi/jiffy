@@ -1,10 +1,11 @@
-||#if ((defined(_M_X64) || defined(__amd64__)) != X64) || (defined(_WIN32) != WIN)
+|| #if ((defined(_M_X64) || defined(__amd64__)) != X64) || (defined(_WIN32) != WIN)
 #error "Wrong DynASM flags used: pass `-D X64` and/or `-D WIN` to dynasm.lua as appropriate"
 #endif
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "dynasm/dasm_proto.h"
-#include "dynasm/dasm_x86.h"
+#include "../dynasm/dasm_proto.h"
+#include "../dynasm/dasm_x86.h"
 #if _WIN32
   #include <Windows.h>
 #else

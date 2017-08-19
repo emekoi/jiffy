@@ -31,11 +31,14 @@ compile = {
 if DYNASM: template0 = "$compiler src/dynasm/dynasm.lua -N $define -o $output $source"
 template1 = "$compiler -o bin/$output $source $link $flags"
 
+if not os.path.exists("bin"):
+    os.makedirs("bin")
+
 if DYNASM:
-    # print string.Template(template0).substitute(dynasm)
+    print string.Template(template0).substitute(dynasm)
     os.system(string.Template(template0).substitute(dynasm))
 os.system(string.Template(template1).substitute(compile))
-# print string.Template(template1).substitute(compile)
+print string.Template(template1).substitute(compile)
 
 
 if DYNASM: os.remove(sys.argv[1].replace(".dasc", ".c"))
