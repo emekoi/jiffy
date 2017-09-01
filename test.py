@@ -24,7 +24,8 @@ compile = {
   "output"    : os.path.basename(sys.argv[1]).replace(".dasc" if DYNASM else ".c", ".exe" if os.name == "nt" else ""),
   "source"    : sys.argv[1].replace(".dasc", ".c") if DYNASM else sys.argv[1],
   "link"      : "",
-  "flags"     : " ".join([ "-O3", "-Wall", "-Wextra", "--std=c99", "-fno-strict-aliasing", "-mwindows" if platform.system() == "Windows" else "" ]),
+  "flags"     : " ".join([ "-g", "-Wall", "-Wextra", "--std=c99", "-fno-strict-aliasing", "-mwindows" if platform.system() == "Windows" else "" ]),
+  # "flags"     : " ".join([ "-O3", "-Wall", "-Wextra", "--std=c99", "-fno-strict-aliasing", "-mwindows" if platform.system() == "Windows" else "" ]),
 }
 
 
@@ -35,10 +36,10 @@ if not os.path.exists("bin"):
     os.makedirs("bin")
 
 if DYNASM:
-    print string.Template(template0).substitute(dynasm)
+    # print string.Template(template0).substitute(dynasm)
     os.system(string.Template(template0).substitute(dynasm))
 os.system(string.Template(template1).substitute(compile))
-print string.Template(template1).substitute(compile)
+# print string.Template(template1).substitute(compile)
 
 
 if DYNASM: os.remove(sys.argv[1].replace(".dasc", ".c"))

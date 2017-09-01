@@ -4,8 +4,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../dynasm/dasm_proto.h"
-#include "../dynasm/dasm_x86.h"
+#include "dynasm/dasm_proto.h"
+#include "dynasm/dasm_x86.h"
 #if _WIN32
   #include <Windows.h>
 #else
@@ -14,6 +14,8 @@
     #define MAP_ANONYMOUS MAP_ANON
   #endif
 #endif
+
+#define UNUSED(x)  ((void) (x))
 
 static void* link_and_encode(dasm_State** d) {
   size_t sz; void* buf;
@@ -218,10 +220,12 @@ static void(* bf_compile(const char* program) )(bf_state_t*) {
 }
 
 static void bf_putchar(bf_state_t* s, unsigned char c) {
+  UNUSED(s);
   putchar((int)c);
 }
 
 static unsigned char bf_getchar(bf_state_t* s) {
+  UNUSED(s);
   return (unsigned char)getchar();
 }
 
